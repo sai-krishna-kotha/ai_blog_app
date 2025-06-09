@@ -21,7 +21,6 @@ venv/
 
 # MacOS system files (optional, if you're on Mac)
 .DS_Store
-main.py
 # Node/npm artifacts (if used for Tailwind or JS bundling)
 *.log
 
@@ -31,5 +30,3 @@ main.py
 *.pyc
 *.pyo
 *.sqlite3
-main.py
-ai_blog_app/settings.py
