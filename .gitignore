@@ -1,0 +1,35 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Django local database
+db.sqlite3
+
+# Environment variables
+.env
+
+# Virtual environment
+.myenv/
+myenv/
+venv/
+.env*/        # Catches .env.local, .env.production, etc.
+
+# Media files (uploads)
+
+# VS Code settings (optional, if you use VS Code)
+.vscode/
+
+# MacOS system files (optional, if you're on Mac)
+.DS_Store
+main.py
+# Node/npm artifacts (if used for Tailwind or JS bundling)
+*.log
+
+# Compiled or temporary files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+main.py
+ai_blog_app/settings.py

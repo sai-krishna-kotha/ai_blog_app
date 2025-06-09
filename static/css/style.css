@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(48, 57, 22);
+}
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.load {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto 0;
+    border: 10px solid #000088;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    animation: rotate 1s linear infinite;
+}

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: blog-generator-api   # ✅ Change this if you want a custom name (like 'blog-generator-api')
+    env: python
+    region: oregon          # ✅ Optional: Change to your preferred region (e.g., frankfurt)
+    plan: free              # ✅ Keep 'free' unless you want a paid plan
+
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn ai_blog_app.wsgi:application"  # ✅ Replace `ai_blog_app` if your project folder is named differently
+
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ai_blog_db   # ✅ MUST MATCH your actual Render PostgreSQL DB name (case-sensitive!)
+          property: connectionString
+
+      - key: SECRET_KEY
+        generateValue: true  # ✅ Automatically generates a secret key
+
+      - key: DEBUG
+        value: "False"       # ✅ Keep False for production; use "True" only for debugging
+
