@@ -15,7 +15,7 @@ venv/
 .env*/        # Catches .env.local, .env.production, etc.
 
 # Media files (uploads)
-
+staticfiles/
 # VS Code settings (optional, if you use VS Code)
 .vscode/
 env_secretkeys.txt

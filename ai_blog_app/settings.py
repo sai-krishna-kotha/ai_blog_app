@@ -39,8 +39,7 @@ COHERE_API_KEY = config("COHERE_API_KEY")
 DATABASE_URL = config("DATABASE_URL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=False, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['*']
 
 
