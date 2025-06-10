@@ -18,7 +18,7 @@ venv/
 
 # VS Code settings (optional, if you use VS Code)
 .vscode/
-ai_blog_app-secretkeys.py
+env_secretkeys.py
 # MacOS system files (optional, if you're on Mac)
 .DS_Store
 # Node/npm artifacts (if used for Tailwind or JS bundling)
