@@ -59,7 +59,7 @@ def yt_title(link):
     print("Title : Step 1")
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=False)
-        print("Title : Step 2\n\n",info)
+        print("Title : Step 2\n\n")
         return info.get('title', 'No Title Found')
 
 
