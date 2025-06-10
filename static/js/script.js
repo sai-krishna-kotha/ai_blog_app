@@ -25,7 +25,7 @@ async function generateHandler(){
     if (youtubeLink) {
         warning.classList.remove('hidden');
         loading_circle.style.display = 'block';
-
+        generatedBlock.classList.add('hidden');
         blogContent.innerHTML = ''; // Clear previous content
 
         const endpointUrl = '/generate-blog/';
