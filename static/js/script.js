@@ -8,7 +8,7 @@ const warning = document.getElementById('warning-on-process');
 const loading_circle = document.getElementById('loading-circle')
 
 const invalid_url_error = document.getElementById('error-invalid-yt-url');
-const empty_url_error = document.getElementById('error-invalid-yt-url');
+const empty_url_error = document.getElementById('error-empty-yt-url');
 
 window.onload = ()=>{
     console.log("On load");
@@ -21,7 +21,7 @@ async function generateHandler(){
     const youtubeLink = document.getElementById('youtubeLink').value;
     console.log("GENERATE");
     console.log(youtubeLink);
-    
+    error_flag = false;
     if (youtubeLink) {
         warning.classList.remove('hidden');
         loading_circle.style.display = 'block';
@@ -44,6 +44,7 @@ async function generateHandler(){
             blogContent.innerHTML = data.content;
 
         } catch (error) {
+            error_flag = true;
             console.error("Error occurred:", error);
             //alert("Something went wrong. Please try again later.");
             invalid_url_error.classList.remove('hidden')
@@ -56,7 +57,8 @@ async function generateHandler(){
         //alert("Please enter a YouTube link.");
         empty_url_error.classList.remove('hidden')
     }
-    generatedBlock.classList.remove('hidden');
+    if (!error_flag)
+        generatedBlock.classList.remove('hidden');
 }
 
 document.getElementById('generateBlogButton').addEventListener('click', generateHandler);

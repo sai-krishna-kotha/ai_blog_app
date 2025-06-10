@@ -111,38 +111,41 @@ def get_transcription(link):
     print(transcript.text)
     return transcript.text
 
-def get_blog_generation_prompt(transcription):
+def get_blog_generation_prompt(transcription: str) -> str:
+    """
+    Takes a transcript and embeds it into a prompt designed to generate a
+    well-structured blog post as clean, unformatted plain text.
+    """
+    
     # Using a triple-quoted f-string for a clean, multi-line prompt.
     prompt = f"""
-Act as an expert blog writer and content strategist, specializing in transforming spoken content into compelling, high-quality articles for platforms like Medium. Your task is to take the following transcript and write a complete, original, and seamless blog post formatted in clean, standard Markdown.
+Act as an expert blog writer and content strategist, specializing in transforming spoken content into compelling, high-quality articles for platforms like Medium. Your task is to take the following transcript and write a complete, original, and seamless blog post as clean, well-structured plain text.
 
-**CRITICAL INSTRUCTIONS:**
-- The entire output MUST be a single, continuous block of Markdown-formatted text.
+CRITICAL INSTRUCTIONS:
+- The entire output MUST be a single, continuous block of plain text.
 - The output must be a fully-formed article, ready to be published.
-- Do NOT include any placeholders, bracketed instructions, or fields to be filled in (e.g., "[Conclusion]", "[Main Point 1]").
-- Do NOT wrap the output in HTML tags.
+- Do NOT include any placeholders, bracketed instructions, or fields to be filled in.
+- Do NOT use any HTML or Markdown formatting (e.g., no `#` for titles, no `*` for lists).
 - Synthesize the core ideas from the transcript into a new, well-structured written piece. Do not simply rephrase the transcript.
 
-**CONTENT STRUCTURE REQUIREMENTS (Use Markdown):**
+CONTENT STRUCTURE REQUIREMENTS (Use Plain Text):
 
-1.  **Title:** Start with a single, engaging H1 title (e.g., `# My Awesome Blog Title`).
-2.  **Introduction:** Follow with a powerful and inspiring introduction that hooks the reader and introduces the central topic.
-3.  **Body:**
-    -   Structure the main content with clear paragraphs.
-    -   Use H2 subheadings (e.g., `## A Key Idea`) to organize the major sections of the article for readability.
-    -   Use bullet points (`*` or `-`) for lists of items.
-    -   If quoting a key insight from the transcript, use Markdown blockquotes (`>`).
-4.  **Key Takeaways Section (If Applicable):**
-    -   Create a distinct section with an H2 subheading like `## Key Takeaways` and use a bulleted list to highlight the most important points.
-5.  **Conclusion:** End with a strong concluding paragraph that summarizes the main message and offers a final, memorable thought or a clear call to action.
+1.  Title: Start with a single, engaging title on its own line.
+2.  Introduction: Follow with a powerful and inspiring introduction that hooks the reader. Use a blank line to separate it from the title.
+3.  Body:
+    -   Structure the main content with clear paragraphs, separated by blank lines.
+    -   Use clear subheadings on their own lines to organize the major sections of the article.
+    -   For lists of items, simply place each item on a new line.
+4.  Key Takeaways Section (If Applicable):
+    -   Create a distinct section with a subheading like "Key Takeaways" on its own line. List the key points, with each point on a new line.
+5.  Conclusion: End with a strong concluding paragraph that summarizes the main message and offers a final, memorable thought or a clear call to action.
 
-**Here is the transcript:**
+Here is the transcript:
 \"\"\"
 {transcription}
 \"\"\"
 """
     return prompt
-
 
 
 def generate_blog_from_transcription(transcription):
