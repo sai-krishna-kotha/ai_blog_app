@@ -23,7 +23,7 @@ env_secretkeys.txt
 .DS_Store
 # Node/npm artifacts (if used for Tailwind or JS bundling)
 *.log
-media/yt_cookies.txt
+static/yt_cookies.txt
 # Compiled or temporary files
 *.log
 *.pot
