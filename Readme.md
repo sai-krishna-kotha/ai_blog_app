@@ -93,7 +93,7 @@ To avoid this issue altogether, it’s recommended to **run the project locally*
         ```
 3. **🌿 Export Environment Variables to Virtual Environment**: (in linux)
 
-        In your terminal (while the virtual environment is activated), set the required environment variables:
+    ``In your terminal (while the virtual environment is activated), set the required environment variables:``
    ```bash
    export ASSEMBLYAI_API_KEY=your_assemblyai_api_key
    export COHERE_API_KEY=your_cohere_api_key
@@ -109,7 +109,7 @@ To avoid this issue altogether, it’s recommended to **run the project locally*
    ```bash
    python manage.py runserver
    ```
-### Option 2: Use Demo Credentials (Read-Only)
+#### 🔹 Option 2: Use Demo Credentials (Read-Only)
 
 You can try the live demo (hosted on Render) using the following credentials:
 ```bash
