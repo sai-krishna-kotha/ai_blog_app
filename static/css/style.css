@@ -1,11 +1,7 @@
-body{
+/* body{
     background-color: rgb(48, 57, 22);
-}
-@keyframes rotate {
-    to {
-        transform: rotate(360deg);
-    }
-}
+} */
+
 
 .load {
     width: 100px;

@@ -95,12 +95,7 @@ def get_transcription(link):
     print(transcript.text)
     return transcript.text
 
-def get_blog_generation_prompt(transcription: str) -> str:
-    """
-    Takes a transcript and embeds it into a comprehensive prompt to generate a
-    well-structured, Markdown-formatted blog post.
-    """
-    
+def get_blog_generation_prompt(transcription):
     # Using a triple-quoted f-string for a clean, multi-line prompt.
     prompt = f"""
 Act as an expert blog writer and content strategist, specializing in transforming spoken content into compelling, high-quality articles for platforms like Medium. Your task is to take the following transcript and write a complete, original, and seamless blog post formatted in clean, standard Markdown.

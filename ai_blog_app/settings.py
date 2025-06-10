@@ -39,8 +39,8 @@ COHERE_API_KEY = config("COHERE_API_KEY")
 DATABASE_URL = config("DATABASE_URL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-
+# DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
@@ -126,7 +126,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATIC_DIR,]
+STATICFILES_DIRS = [STATIC_DIR]
 
 
 # Default primary key field type
@@ -136,5 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-# MEDIA_ROOT = Path.joinpath(BASE_DIR,'media')
 LOGIN_URL = 'login'
