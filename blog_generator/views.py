@@ -53,76 +53,42 @@ def generate_blog(request):
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
+
 def yt_title(link):
-    print("Title : Step 1")
-
-    cookie_path = os.path.join(settings.BASE_DIR, 'static/yt_cookies.txt')
-    if not os.path.exists(cookie_path):
-        print(f"Cookie file not found at: {cookie_path}")
-
-    ydl_opts = {
-        'quiet': True,
-        'skip_download': True,
-        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'cookiefile': cookie_path,
-    }
-
-    try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(link, download=False)
-            print("Title : Step 2\n\n")
-            return info.get('title', 'No Title Found')
-    except Exception as e:
-        print(f"yt_title: Error occurred - {e}")
-        return "Title could not be retrieved"
+    ydl_opts = {}
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(link, download=False)
+        return info.get('title', 'No Title Found')
 
 
 def download_audio(link):
-    print("Download audio: Step 1")
-
     output_dir = settings.MEDIA_ROOT
     output_template = os.path.join(output_dir, '%(title)s.%(ext)s')
-    cookie_path = os.path.join(settings.BASE_DIR, 'static/yt_cookies.txt')
-
-    if not os.path.exists(cookie_path):
-        print(f"Cookie file not found at: {cookie_path}")
 
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_template,
-        'quiet': True,
-        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'cookiefile': cookie_path,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
+        'quiet': True,
     }
-    try:
-        print("Download audio: Step 3")
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            print("Download audio: Step 4")
-            info = ydl.extract_info(link, download=True)
-            filename = ydl.prepare_filename(info)
-            mp3_filename = os.path.splitext(filename)[0] + '.mp3'
-            print("Download audio: Step 5")
-            return mp3_filename
-    except Exception as e:
-        print(f"download_audio: Error occurred - {e}")
-        return None
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(link, download=True)
+        filename = ydl.prepare_filename(info)
+        mp3_filename = os.path.splitext(filename)[0] + '.mp3'
+        return mp3_filename
 
 
 def get_transcription(link):
-    print("Get Transcript : Step 1")
     audio_file = download_audio(link)
-    print("Get Transcript : Step 2")
     aai.settings.api_key = settings.ASSEMBLYAI_API_KEY
 
     transcriber = aai.Transcriber()
-    print("Get Transcript : Step 3")
     transcript = transcriber.transcribe(audio_file)
-    print("Get Transcript : Step 4")
     if os.path.exists(audio_file):
         os.remove(audio_file)
     print("You came here \n\n\n\n")
@@ -164,6 +130,7 @@ Here is the transcript:
 \"\"\"
 """
     return prompt
+
 
 
 def generate_blog_from_transcription(transcription):
