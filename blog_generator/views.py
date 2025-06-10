@@ -53,18 +53,27 @@ def generate_blog(request):
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
-
 def yt_title(link):
-    ydl_opts = {}
+    ydl_opts = {
+        'quiet': True,
+        'skip_download': True,
+        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+
     print("Title : Step 1")
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(link, download=False)
-        print("Title : Step 2\n\n")
-        return info.get('title', 'No Title Found')
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(link, download=False)
+            print("Title : Step 2\n\n")
+            return info.get('title', 'No Title Found')
+    except Exception as e:
+        print(f"Title : Error occurred - {e}")
+        return 'No Title Found'
 
 
 def download_audio(link):
     print("Download audio: Step 1")
+
     output_dir = settings.MEDIA_ROOT
     output_template = os.path.join(output_dir, '%(title)s.%(ext)s')
 
@@ -72,22 +81,27 @@ def download_audio(link):
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_template,
+        'quiet': True,
+        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'quiet': True,
     }
-    print("Download audio: Step 3")
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        print("Download audio: Step 4")
-        info = ydl.extract_info(link, download=True)
-        filename = ydl.prepare_filename(info)
-        mp3_filename = os.path.splitext(filename)[0] + '.mp3'
-        print("Download audio: Step 5")
-        return mp3_filename
+    print("Download audio: Step 3")
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            print("Download audio: Step 4")
+            info = ydl.extract_info(link, download=True)
+            filename = ydl.prepare_filename(info)
+            mp3_filename = os.path.splitext(filename)[0] + '.mp3'
+            print(f"Download audio: Step 5 — MP3 saved at: {mp3_filename}")
+            return mp3_filename
+    except Exception as e:
+        print(f"Download audio: Error occurred - {e}")
+        return None
 
 
 def get_transcription(link):
@@ -97,9 +111,9 @@ def get_transcription(link):
     aai.settings.api_key = settings.ASSEMBLYAI_API_KEY
 
     transcriber = aai.Transcriber()
-    print("Get Transcript : Step 2")
+    print("Get Transcript : Step 3")
     transcript = transcriber.transcribe(audio_file)
-    print("Get Transcript : Step 2")
+    print("Get Transcript : Step 4")
     if os.path.exists(audio_file):
         os.remove(audio_file)
     print("You came here \n\n\n\n")
