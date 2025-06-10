@@ -41,16 +41,11 @@ This is a web-based application that allows users to **generate insightful and s
 
 ---
 
-Paste your rich text content here. You can paste directly from Word or other rich text sources.
-
 ### ⚠️ Known Issue: YouTube Video Unavailability on Render
 
 > **Problem:**  
 > When deployed on platforms like **Render**, YouTube videos may return the following error during title extraction or audio download using `yt-dlp`:
 > 
-> yaml
-> 
-> CopyEdit
 > 
 > `ERROR: [youtube] <video_id>: Video unavailable. This content isn’t available. WARNING: The provided YouTube account cookies are no longer valid.`
 > 
