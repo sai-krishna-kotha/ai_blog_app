@@ -67,16 +67,16 @@ To avoid this issue altogether, it’s recommended to **run the project locally*
     git clone https://github.com/sai-krishna-kotha/ai_blog_app.git
     cd ai_blog_app
     ```
-2. **Set up Virtual Environment**:(in linux)
+2. **🐍 Set Up Virtual Environment**:(in linux)
    ```bash
    python3 -m venv .venv
-   source .venv/bin/activate
+   source .myvenv/bin/activate
    ```
-3. **Install Dependencies**:
+3. **⚙️ Install Dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
-4. 🛢️ Aiven PostgreSQL Database Setup
+4. **🛢️ Aiven PostgreSQL Database Setup**:
 
     1. *Create a PostgreSQL Instance* on [Aiven.io](https://aiven.io).
     2. *Enable “Replication”* when creating a database user (important for Django).
@@ -91,7 +91,7 @@ To avoid this issue altogether, it’s recommended to **run the project locally*
         ```bash
         CREATE DATABASE your_db_name;
         ```
-3. **🌿 Export Environment Variables to Virtual Environment**: (in linux)
+3. **🌿 Export Environment Variables to Virtual Environment**: (on linux)
 
     ``In your terminal (while the virtual environment is activated), set the required environment variables:``
    ```bash
@@ -101,13 +101,13 @@ To avoid this issue altogether, it’s recommended to **run the project locally*
    export DEBUG=True  # Use False in production
    export DATABASE_URL=postgres://<username>:<password>@<hostname>:<port>/<db_name>?sslmode=require
    ```
-2. **Apply migrations(only once)**: (in linux)
+2. **🗃️ Apply Migrations (only once)**: (on linux)
    ```bash
-   python manage.py migrate
+   python3 manage.py migrate
    ```
-4. **Start the Server**:
+4. **🚀 Start the Server**:
    ```bash
-   python manage.py runserver
+   python3 manage.py runserver
    ```
 #### 🔹 Option 2: Use Demo Credentials (Read-Only)
 
