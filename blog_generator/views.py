@@ -56,15 +56,19 @@ def generate_blog(request):
 
 def yt_title(link):
     ydl_opts = {}
+    print("Title : Step 1")
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=False)
+        print("Title : Step 2\n\n",info)
         return info.get('title', 'No Title Found')
 
 
 def download_audio(link):
+    print("Download audio: Step 1")
     output_dir = settings.MEDIA_ROOT
     output_template = os.path.join(output_dir, '%(title)s.%(ext)s')
 
+    print("Download audio: Step 2")
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_template,
@@ -75,20 +79,27 @@ def download_audio(link):
         }],
         'quiet': True,
     }
+    print("Download audio: Step 3")
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        print("Download audio: Step 4")
         info = ydl.extract_info(link, download=True)
         filename = ydl.prepare_filename(info)
         mp3_filename = os.path.splitext(filename)[0] + '.mp3'
+        print("Download audio: Step 5")
         return mp3_filename
 
 
 def get_transcription(link):
+    print("Get Transcript : Step 1")
     audio_file = download_audio(link)
+    print("Get Transcript : Step 2")
     aai.settings.api_key = settings.ASSEMBLYAI_API_KEY
 
     transcriber = aai.Transcriber()
+    print("Get Transcript : Step 2")
     transcript = transcriber.transcribe(audio_file)
+    print("Get Transcript : Step 2")
     if os.path.exists(audio_file):
         os.remove(audio_file)
     print("You came here \n\n\n\n")
