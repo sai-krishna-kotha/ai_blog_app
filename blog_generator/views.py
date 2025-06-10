@@ -123,7 +123,7 @@ CONTENT STRUCTURE REQUIREMENTS (Use Plain Text):
 4.  Key Takeaways Section (If Applicable):
     -   Create a distinct section with a subheading like "Key Takeaways" on its own line. List the key points, with each point on a new line.
 5.  Conclusion: End with a strong concluding paragraph that summarizes the main message and offers a final, memorable thought or a clear call to action.
-
+Follow the requirements and instructions stickly
 Here is the transcript:
 \"\"\"
 {transcription}
