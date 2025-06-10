@@ -115,6 +115,5 @@ You can try the live demo (hosted on Render) using the following credentials:
 ```bash
    Username: kothasaikrishna
    Password: 12345
-     
-
-=> ⚠️ Due to the YouTube restriction explained above, some features (like video title fetch or transcription) may not work in the demo environment.
+```     
+> ⚠️ Due to the YouTube restriction explained above, some features (like video title fetch or transcription) may not work in the demo environment.
