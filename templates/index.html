@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Blog Generator</title>
-    {% comment %} <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'dist/css/output.css' %}">
-<body class="flex flex-col min-h-scrren bg-gray-100 font-sans antialised">
-    <!-- Navbar -->
-    <nav class="bg-black p-4 text-white">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-2">
-            <h1 class="text-2xl md:text-3xl font-bold text-center md:text-">AI Blog Generator</h1>
-            
-            <div class="text-sm md:text-base">
-                <a href='{% url "index" %}' class="text-white hover:underline mx-4">Welcome {{user.username}}</a>
-                <a href='{% url "blog-list" %}' class="text-white hover:underline mx-4">Saved Blog Posts</a>
-                <a href='{% url "logout" %}' class="text-white hover:underline">Logout</a>
+    <link rel="stylesheet" href="{% static 'dist/css/output.css' %}">
+    <meta name="google-site-verification" content="VtmjrCOFnOTEWJ51MJv1MPGoY-zyaE3E4P_prQpLy24" />
+</head>
+<body class="flex flex-col min-h-screen pt-[60px] bg-gray-100 font-sans antialiased">
+    <nav class="fixed top-0 left-0 w-full bg-black p-4 text-white">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-left gap-2">            
+            <div class="flex flex-col md:flex-row text-sm md:text-base gap-2 md:gap-0">
+                <a href='{% url "home" %}' class="text-white hover:underline mx-2 md:mx-4">Welcome <strong> {{user.username}}</strong></a>
+                <div class="flex md:flex-col md:items-right justify-between">
+
+                    <a href='{% url "blog-list" %}' class="text-white hover:underline mx-2 md:mx-4">Saved Blog Posts</a>
+                    <a href='{% url "logout" %}' class="text-white hover:underline mx-2 md:mx-0 md:text-right">Logout</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -25,12 +26,10 @@
     <br>
     <br>
 
-    <!-- Main -->
-    <div class="flex-grow container mx-auto mt-10 px-4 sm:px-0">
+    <div class="flex-grow container mx-auto mt-10 px-4">
         <div
             class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md transition-transform transform flex flex-col">
 
-            <!-- Introduction section -->
             <div class="text-center">
                 <h2 class="text-2xl font-semibold mb-4">Welcome to the AI Blog Generator</h2>
                 <p class="text-gray-700">
@@ -41,39 +40,36 @@
 
             <br>
 
-            <!-- Youtube section -->
             <div>
                 <h2 class="text-xl mb-4 font-semibold">Enter Youtube Video Link</h2>
-                <div class="flex space-x-4">
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                     <input id="youtubeLink" type="url" placeholder="Paste youtube Link..."
-                        class="flex-grow p-2 border border-black focus:outline-none focus:border-blue-500 rounded-l-md">
-                    <button type="button" id="generateBlogButton" class="bg-black text-white px-4 py-2 rounded-r-md hover:bg-gray-500 transition-colors active:bg-gray-800 disabled:bg-gray-300 cursor-pointer">Generate</button>
+                        class="flex-grow p-2 border border-black focus:outline-none focus:border-blue-500 rounded-md sm:rounded-l-md sm:rounded-r-none">
+                    <button type="button" id="generateBlogButton" class="bg-black text-white px-4 py-2 rounded-md sm:rounded-r-md sm:rounded-l-none hover:bg-gray-700 transition-colors active:bg-gray-800 disabled:bg-gray-300 cursor-pointer">Generate</button>
                 </div>
 
             </div>
 
 
-            <!-- section for loading circle -->
             <div>
-                <div class="text-center font-bold mt-2 hidden" id="warning-on-process">Don't reload while processing...</div>
-                <div style="display: none;" id="loading-circle" class="load"></div>
-                <div id="error-invalid-yt-url" class="text-center text-red-800 hidden">Enter a valid youtube URL</div>
-                <div id="error-empty-yt-url" class="text-center text-red-800 hidden">Enter a youtube URL</div>
+                <div class="text-center font-bold mt-4 hidden" id="warning-on-process">Don't reload while processing...</div>
+                <div style="display: none;" id="loading-circle" class="load mx-auto mt-4"></div>
+                <div id="error-invalid-yt-url" class="text-center text-red-800 mt-2 hidden">Enter a valid YouTube URL</div>
+                <div id="error-empty-yt-url" class="text-center text-red-800 mt-2 hidden">Enter a YouTube URL</div>
             </div>
 
 
-            <!-- Generated Blog Display Section -->
-            <section class="mt-4 flex-grow hidden" id="generated-block">
+            <section class="mt-8 flex-grow hidden" id="generated-block">
                 <h2 class="text-xl mb-4 font-semibold">Generated Blog Article</h2>
-                <div id="blogContent" class="mt-2  space-y-4"></div>
-                <div class="text-xl font-bold mt-4">Saved to your <a href='{% url "blog-list" %}' class="hover:underline text-blue-800">Blog posts</a></div>
+                <div id="blogContent" class="mt-2 space-y-4 prose max-w-none"></div>
+                <div class="text-xl font-bold mt-6 text-center">Saved to your <a href='{% url "blog-list" %}' class="hover:underline text-blue-800">Blog posts</a></div>
             </section>
         </div>
     </div>
 
 
-    <footer class="text-center p-4 text-blacl mt-6">
-        Powered by Code With Saii</a>
+    <footer class="text-center p-4 text-black mt-6">
+        Powered by <a href="https://www.youtube.com/" class="text-blue-600 hover:underline">Code With Saii</a>
     </footer>
     <script src="{% static 'js/script.js' %}"></script>
 </body>

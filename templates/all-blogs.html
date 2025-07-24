@@ -5,29 +5,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>All Blog Posts</title>
-        {% comment %} <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
         <link rel="stylesheet" href="{% static 'dist/css/output.css' %}">
 </head>
 
-<body class="bg-gray-100 font-sans antialiased">
-
-    <nav class="bg-black p-4 text-white">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-2">
-            <h1 class="text-2xl md:text-3xl font-bold text-center md:text-left">AI Blog Generator</h1>
+<body class="bg-gray-100 font-sans pt-[60px] antialiased">
+    <nav class="fixed top-0 left-0 w-full bg-black p-4 text-white">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-left gap-2">
+            {% comment %} <h1 class="text-2xl md:text-3xl font-bold text-center md:text-left mb-2 md:mb-0">AI Blog Generator</h1> {% endcomment %}
             
-            <div class="text-sm md:text-base">
-                <a href="/" class="text-white hover:underline mx-4">Welcome {{user.username}}</a>
-                <a href="/blog-list" class="text-white hover:underline mx-4">Saved Blog Posts</a>
-                <a href="/logout/" class="text-white hover:underline">Logout</a>
+            <div class="flex flex-col md:flex-row text-sm md:text-base gap-2 md:gap-0">
+                <a href="{% url 'home' %}" class="text-white hover:underline mx-2 md:mx-4">Welcome <strong>{{user.username}}</strong></a>
+                <div class="flex flex-row justify-between">
+                    <a href="{% url 'blog-list' %}" class="text-white hover:underline mx-2 md:mx-4">Saved Blog Posts</a>
+                    <a href="{% url 'logout' %}" class="text-white hover:underline mx-2 md:mx-0">Logout</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <div class="container mx-auto mt-10 px-4 sm:px-0">
+    <div class="container mx-auto mt-10 px-4">
         <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
 
-            <!-- Blog posts section -->
             <section>
                 <h2 class="text-xl mb-4 font-semibold">All Blog Posts</h2>
                 <div class="space-y-4">
@@ -35,23 +33,22 @@
                     <h1>Yoooo</h1>
                     {% endif %}
                     {% for article in blog_articles reversed %}
-                    <a href="/blog-details/{{article.id}}/">
-                        <div class="border border-gray-300 p-4 rounded-lg">
-                            <h3 class="text-lg font-semibold">{{article.youtube_title}}</h3>
-                            <p>{{article.generated_content|truncatechars:80}}</p>
-                        </div><br>
+                    <a href="{% url 'blog-details' article.id %}" class="block">
+                        <div class="border border-gray-300 p-4 rounded-lg hover:shadow-lg transition-shadow duration-200">
+                            <h3 class="text-lg font-semibold mb-1">{{article.youtube_title}}</h3>
+                            <p class="text-gray-700">{{article.generated_content|truncatechars:80}}</p>
+                        </div>
                     </a>
                     {% endfor %}
 
-                    <!-- Repeat -->
-                </div>
+                    </div>
             </section>
 
         </div>
     </div>
 
-    <footer class="text-center p-4 text-blacl mt-6">
-        Powered by Code With Saii</a>
+    <footer class="text-center p-4 text-black mt-6">
+        Powered by Code With Saii
     </footer>
 </body>
 
