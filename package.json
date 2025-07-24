@@ -1,0 +1,24 @@
+{
+  "name": "ai_blog_app",
+  "version": "1.0.0",
+  "description": "ai_blog_app",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:css":"npx @tailwindcss/cli -i static/css/main.css -o static/dist/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sai-krishna-kotha/ai_blog_app.git"
+  },
+  "author": "kothasaikrishna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sai-krishna-kotha/ai_blog_app/issues"
+  },
+  "homepage": "https://github.com/sai-krishna-kotha/ai_blog_app#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

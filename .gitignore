@@ -4,7 +4,8 @@ __pycache__/
 
 # Environment variables
 .env
-
+node_modules/
+static/dist/css/output.css
 # Virtual environment
 .myenv/
 myenv/
