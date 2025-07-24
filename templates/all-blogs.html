@@ -15,11 +15,11 @@
             
             <div class="flex flex-col md:flex-row text-sm md:text-base gap-2 md:gap-0">
                 <a href="{% url 'home' %}" class="text-white hover:underline mx-2 md:mx-4">Welcome <strong>{{user.username}}</strong></a>
+            </div>
                 <div class="flex flex-row justify-between">
                     <a href="{% url 'blog-list' %}" class="text-white hover:underline mx-2 md:mx-4">Saved Blog Posts</a>
                     <a href="{% url 'logout' %}" class="text-white hover:underline mx-2 md:mx-0">Logout</a>
                 </div>
-            </div>
         </div>
     </nav>
 

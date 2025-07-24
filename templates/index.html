@@ -14,18 +14,19 @@
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-left gap-2">            
             <div class="flex flex-col md:flex-row text-sm md:text-base gap-2 md:gap-0">
                 <a href='{% url "home" %}' class="text-white hover:underline mx-2 md:mx-4">Welcome <strong> {{user.username}}</strong></a>
-                <div class="flex md:flex-col md:items-right justify-between">
+            </div>
+            <div class="flex flex-row items-center md:items-right justify-between">
 
                     <a href='{% url "blog-list" %}' class="text-white hover:underline mx-2 md:mx-4">Saved Blog Posts</a>
                     <a href='{% url "logout" %}' class="text-white hover:underline mx-2 md:mx-0 md:text-right">Logout</a>
-                </div>
             </div>
         </div>
     </nav>
-
+    
     <br>
     <br>
-
+    
+    <marquee behavior="scroll" direction="right">Getting Invalid URL <a href="https://github.com/sai-krishna-kotha/ai_blog_app?tab=readme-ov-file#%EF%B8%8F-known-issue-youtube-video-unavailability-on-render" class="text-red-700">See why you getting this error</a></marquee>
     <div class="flex-grow container mx-auto mt-10 px-4">
         <div
             class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md transition-transform transform flex flex-col">
@@ -37,28 +38,27 @@
                     Simply enter the link to the YouTube video below and let the AI create the content for you!
                 </p>
             </div>
-
+            
             <br>
-
+            
             <div>
                 <h2 class="text-xl mb-4 font-semibold">Enter Youtube Video Link</h2>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                     <input id="youtubeLink" type="url" placeholder="Paste youtube Link..."
-                        class="flex-grow p-2 border border-black focus:outline-none focus:border-blue-500 rounded-md sm:rounded-l-md sm:rounded-r-none">
+                    class="flex-grow p-2 border border-black focus:outline-none focus:border-blue-500 rounded-md sm:rounded-l-md sm:rounded-r-none">
                     <button type="button" id="generateBlogButton" class="bg-black text-white px-4 py-2 rounded-md sm:rounded-r-md sm:rounded-l-none hover:bg-gray-700 transition-colors active:bg-gray-800 disabled:bg-gray-300 cursor-pointer">Generate</button>
                 </div>
-
+                
             </div>
-
-
+            
             <div>
                 <div class="text-center font-bold mt-4 hidden" id="warning-on-process">Don't reload while processing...</div>
                 <div style="display: none;" id="loading-circle" class="load mx-auto mt-4"></div>
                 <div id="error-invalid-yt-url" class="text-center text-red-800 mt-2 hidden">Enter a valid YouTube URL</div>
                 <div id="error-empty-yt-url" class="text-center text-red-800 mt-2 hidden">Enter a YouTube URL</div>
             </div>
-
-
+            
+            
             <section class="mt-8 flex-grow hidden" id="generated-block">
                 <h2 class="text-xl mb-4 font-semibold">Generated Blog Article</h2>
                 <div id="blogContent" class="mt-2 space-y-4 prose max-w-none"></div>
@@ -66,7 +66,7 @@
             </section>
         </div>
     </div>
-
+    
 
     <footer class="text-center p-4 text-black mt-6">
         Powered by <a href="https://www.youtube.com/" class="text-blue-600 hover:underline">Code With Saii</a>
