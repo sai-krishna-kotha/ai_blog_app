@@ -10,14 +10,15 @@
         <link rel="stylesheet" href="{% static 'dist/css/output.css' %}">
 <body class="flex flex-col min-h-scrren bg-gray-100 font-sans antialised">
     <!-- Navbar -->
-    <nav class="bg-blue-600 p-4 text-white flex justify-between">
-        <div>
-            <h1 class="text-3xl font-bold">AI Blog Generator</h1>
-        </div>
-        <div>
-            <a href='{% url "index" %}' class="text-white hover:underline mx-4">Welcome {{user.username}}</a>
-            <a href='{% url "blog-list" %}' class="text-white hover:underline mx-4">Saved Blog Posts</a>
-            <a href='{% url "logout" %}' class="text-white hover:underline">Logout</a>
+    <nav class="bg-black p-4 text-white">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-2">
+            <h1 class="text-2xl md:text-3xl font-bold text-center md:text-">AI Blog Generator</h1>
+            
+            <div class="text-sm md:text-base">
+                <a href='{% url "index" %}' class="text-white hover:underline mx-4">Welcome {{user.username}}</a>
+                <a href='{% url "blog-list" %}' class="text-white hover:underline mx-4">Saved Blog Posts</a>
+                <a href='{% url "logout" %}' class="text-white hover:underline">Logout</a>
+            </div>
         </div>
     </nav>
 
@@ -46,8 +47,9 @@
                 <div class="flex space-x-4">
                     <input id="youtubeLink" type="url" placeholder="Paste youtube Link..."
                         class="flex-grow p-2 border border-black focus:outline-none focus:border-blue-500 rounded-l-md">
-                    <button type="button" id="generateBlogButton" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors active:bg-blue-200">Generate</button>
+                    <button type="button" id="generateBlogButton" class="bg-black text-white px-4 py-2 rounded-r-md hover:bg-gray-500 transition-colors active:bg-gray-800 disabled:bg-gray-300 cursor-pointer">Generate</button>
                 </div>
+
             </div>
 
 

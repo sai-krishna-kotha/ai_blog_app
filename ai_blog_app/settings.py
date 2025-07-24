@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'ai_blog_app.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+        "NAME": BASE_DIR / 'db.sqlite3',
     }
 }
 
