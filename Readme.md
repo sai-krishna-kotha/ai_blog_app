@@ -76,30 +76,14 @@ To avoid this issue altogether, it’s recommended to **run the project locally*
    ```bash
    pip install -r requirements.txt
    ```
-4. **🛢️ Aiven PostgreSQL Database Setup**:
+4. **🌿 Export Environment Variables to Virtual Environment**: (on linux)
 
-    1. *Create a PostgreSQL Instance* on [Aiven.io](https://aiven.io).
-    2. *Enable “Replication”* when creating a database user (important for Django).
-    3. *Get Connection Details*: Host, Port, Database Name, Username, Password.
-
-    4. *Access PostgreSQL via terminal* (optional but useful):
-        ```bash
-        psql -h <hostname> -U <username> -p <port> -d postgres
-        ```
-    5. *You are asked to enter your password*
-    6. *Create database*
-        ```bash
-        CREATE DATABASE your_db_name;
-        ```
-3. **🌿 Export Environment Variables to Virtual Environment**: (on linux)
-
-    ``In your terminal (while the virtual environment is activated), set the required environment variables:``
+    ``In .env file ``
    ```bash
-   export ASSEMBLYAI_API_KEY=your_assemblyai_api_key
-   export COHERE_API_KEY=your_cohere_api_key
-   export SECRET_KEY='your_django_secret_key'
-   export DEBUG=True  # Use False in production
-   export DATABASE_URL=postgres://<username>:<password>@<hostname>:<port>/<db_name>?sslmode=require
+   ASSEMBLYAI_API_KEY=your_assemblyai_api_key
+   COHERE_API_KEY=your_cohere_api_key
+   SECRET_KEY='your_django_secret_key'
+   DEBUG=True  # Use False in production
    ```
 2. **🗃️ Apply Migrations (only once)**: (on linux)
    ```bash
