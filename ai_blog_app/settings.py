@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from decouple import config
 import os
-import dj_database_url
+# import dj_database_url
 import os
 
 
@@ -36,7 +36,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = config('SECRET_KEY')
 ASSEMBLYAI_API_KEY = config("ASSEMBLYAI_API_KEY")
 COHERE_API_KEY = config("COHERE_API_KEY")
-DATABASE_URL = config("DATABASE_URL")
+# DATABASE_URL = config("DATABASE_URL")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -87,9 +87,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ai_blog_app.wsgi.application'
 
 
+# DATABASES = {
+#     'default': dj_database_url.config(default=config('DATABASE_URL'))
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "mydatabase",
+    }
 }
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
