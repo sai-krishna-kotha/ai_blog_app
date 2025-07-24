@@ -10,7 +10,7 @@
     <meta name="google-site-verification" content="VtmjrCOFnOTEWJ51MJv1MPGoY-zyaE3E4P_prQpLy24" />
 </head>
 <body class="flex flex-col min-h-screen pt-[60px] bg-gray-100 font-sans antialiased">
-    <nav class="fixed top-0 left-0 w-full bg-black p-4 text-white">
+    <nav class="fixed top-0 left-0 w-full bg-black p-4 text-white z-10">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-left gap-2">            
             <div class="flex flex-col md:flex-row text-sm md:text-base gap-2 md:gap-0">
                 <a href='{% url "home" %}' class="text-white hover:underline mx-2 md:mx-4">Welcome <strong> {{user.username}}</strong></a>
@@ -26,7 +26,7 @@
     <br>
     <br>
     
-    <marquee behavior="scroll" direction="right">Getting Invalid URL <a href="https://github.com/sai-krishna-kotha/ai_blog_app?tab=readme-ov-file#%EF%B8%8F-known-issue-youtube-video-unavailability-on-render" class="text-red-700">See why you getting this error</a></marquee>
+    <marquee behavior="scroll" direction="left" class='z-0' hover:>Getting Invalid URL <a href="https://github.com/sai-krishna-kotha/ai_blog_app?tab=readme-ov-file#%EF%B8%8F-known-issue-youtube-video-unavailability-on-render" class="text-red-700">See why you getting this error</a></marquee>
     <div class="flex-grow container mx-auto mt-10 px-4">
         <div
             class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md transition-transform transform flex flex-col">
