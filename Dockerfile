@@ -25,4 +25,4 @@ RUN python manage.py collectstatic --noinput
 
 # 8. Set the command to run the application using Gunicorn
 # Render provides the $PORT environment variable, which we bind to.
-CMD ["gunicorn", "blog_app.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+CMD ["gunicorn", "ai_blog_app.wsgi:application", "--bind", "0.0.0.0:$PORT"]
