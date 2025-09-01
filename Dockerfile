@@ -1,4 +1,4 @@
-# 1. Base Image: Use the same Python version as your project
+# 1. Base Image: Use a newer Python version compatible with Django 5.2
 FROM python:3.11-slim
 
 # 2. Install System Dependencies: FFmpeg is required for youtube-dlp
@@ -19,9 +19,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 6. Copy the entire project into the container
 COPY . .
 
-# 7. Run Django's collectstatic
+# 7. Run Django's collectstatic with a dummy SECRET_KEY
 # This gathers all static files (CSS, JS) into a single folder for WhiteNoise to serve
-RUN python manage.py collectstatic --noinput
+RUN SECRET_KEY=dummy-key python manage.py collectstatic --noinput
 
 # 8. Set the command to run the application using Gunicorn
 # Render provides the $PORT environment variable, which we bind to.
