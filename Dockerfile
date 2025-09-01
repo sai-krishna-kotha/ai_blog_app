@@ -21,5 +21,8 @@ COPY . .
 # 7. Run Django's collectstatic with all required dummy keys
 RUN DEBUG=0 SECRET_KEY=dummy ASSEMBLYAI_API_KEY=dummy COHERE_API_KEY=dummy python manage.py collectstatic --noinput
 
-# 8. Set the command to run the application using Gunicorn
-CMD ["gunicorn", "ai_blog_app.wsgi:application", "--bind", "0.0.0.0:$PORT"]
+# 8. Run database migrations (for Free Tier)
+RUN DEBUG=0 SECRET_KEY=dummy ASSEMBLYAI_API_KEY=dummy COHERE_API_KEY=dummy python manage.py migrate
+
+# 9. Set the command to run the application using Gunicorn (Shell Form)
+CMD gunicorn ai_blog_app.wsgi:application --bind 0.0.0.0:$PORT
