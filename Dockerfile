@@ -1,4 +1,4 @@
-# 1. Base Image: Use a newer Python version compatible with Django 5.2
+# 1. Base Image: Use a newer Python version
 FROM python:3.11-slim
 
 # 2. Install System Dependencies: FFmpeg is required for youtube-dlp
@@ -12,17 +12,14 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # 5. Copy and install Python requirements
-# This is done in a separate step to leverage Docker's build cache
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 6. Copy the entire project into the container
 COPY . .
 
-# 7. Run Django's collectstatic with a dummy SECRET_KEY
-# This gathers all static files (CSS, JS) into a single folder for WhiteNoise to serve
-RUN SECRET_KEY=dummy-key python manage.py collectstatic --noinput
+# 7. Run Django's collectstatic with all required dummy keys
+RUN DEBUG=0 SECRET_KEY=dummy ASSEMBLYAI_API_KEY=dummy COHERE_API_KEY=dummy python manage.py collectstatic --noinput
 
 # 8. Set the command to run the application using Gunicorn
-# Render provides the $PORT environment variable, which we bind to.
 CMD ["gunicorn", "ai_blog_app.wsgi:application", "--bind", "0.0.0.0:$PORT"]
