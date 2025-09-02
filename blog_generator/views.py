@@ -55,7 +55,9 @@ def generate_blog(request):
 
 
 def yt_title(link):
-    ydl_opts = {}
+    ydl_opts = {
+        'cookiefile': 'static/cookies.txt',
+    }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(link, download=False)
         return info.get('title', 'No Title Found')
@@ -67,6 +69,7 @@ def download_audio(link):
 
     ydl_opts = {
         'format': 'bestaudio/best',
+        'cookiefile': 'static/cookies.txt',
         'outtmpl': output_template,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
