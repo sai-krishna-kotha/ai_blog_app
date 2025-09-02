@@ -35,4 +35,4 @@ RUN DEBUG=0 SECRET_KEY=dummy ASSEMBLYAI_API_KEY=dummy COHERE_API_KEY=dummy pytho
 RUN DEBUG=0 SECRET_KEY=dummy ASSEMBLYAI_API_KEY=dummy COHERE_API_KEY=dummy python manage.py migrate
 
 # 11. Set the command to run the application using Gunicorn (Shell Form)
-CMD gunicorn ai_blog_app.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn ai_blog_app.wsgi:application --bind 0.0.0.0:$PORT --timeout 1000
