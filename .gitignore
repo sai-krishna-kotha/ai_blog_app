@@ -22,6 +22,8 @@ env_secretkeys.txt
 # Node/npm artifacts (if used for Tailwind or JS bundling)
 *.log
 static/yt_cookies.txt
+static/cookies.txt
+cookies.txt
 # Compiled or temporary files
 *.log
 *.pot
